@@ -4,17 +4,18 @@ Análise de acidentes de trânsito no Brasil.
 📊 Arquitetura Medallion + Modelagem Star Schema + PySpark + Delta Lake
 
 Este projeto tem como objetivo construir uma arquitetura de dados completa para analisar acidentes de trânsito no Brasil, utilizando dados públicos do DATATRAN (PRF).
-A solução envolve desde o tratamento inicial de dados brutos (raw) até a criação de uma camada gold modelada em Star Schema, passando por conversão, padronização e enriquecimento das informações.
 
-📁 Arquitetura Geral do Projeto
+O fluxo cobre desde a ingestão de dados brutos (RAW) até a criação de uma camada GOLD modelada em Star Schema, passando por padronização, limpeza, enriquecimento e organização analítica.
+
+## 📁 Arquitetura Geral do Projeto
 
 A arquitetura segue o padrão Medallion:
 
-RAW → BRONZE → SILVER → GOLD
+*RAW → BRONZE → SILVER → GOLD*
 
 E na camada GOLD utilizamos uma arquitetura dimensional (Star Schema) para otimizar análises.
 
-🛠️ Tecnologias Utilizadas
+##🛠️ Tecnologias Utilizadas
 
 PySpark / Spark
 
@@ -26,14 +27,14 @@ Arquitetura Medallion
 
 Modelagem Dimensional (Star Schema)
 
-📂 Estrutura das Camadas
-1️⃣ Raw (Fonte)
+## 📂 Estrutura das Camadas
+### 1️⃣ Raw (Fonte)
 
 Arquivos originais do DATATRAN, separados por ano (datatran_2007 … datatran_2024)
 
 Dados heterogêneos: schemas diferentes entre anos
 
-2️⃣ Bronze – Padronização e Unificação
+### 2️⃣ Bronze – Padronização e Unificação
 
 Notebook: raw_to_bronze.ipynb
 
@@ -48,9 +49,9 @@ União com unionByName(allowMissingColumns=True)
 Persistência em Delta Lake
 
 Saída:
-📌 workspace.projeto_datatran.datatran_unificada
+📌 workspace.projeto_datatran.datatran_bronze
 
-3️⃣ Silver – Limpeza, Tipagem e Tratamento
+### 3️⃣ Silver – Limpeza, Tipagem e Tratamento
 
 Notebook: bronze_to_silver.sql
 
@@ -69,30 +70,29 @@ Remoção de inconsistências
 Resultado:
 📌 workspace.projeto_datatran.datatran_silver
 
-4️⃣ Gold – Modelagem Dimensional (Star Schema)
+### 4️⃣ Gold – Modelagem Dimensional (Star Schema)
 
 Notebook: silver_to_gold.sql
 
 A camada GOLD é composta por:
 
-📘 Dimensões
+### 📘 Dimensões
 
-gold_dim_time
-Contém granularidade de data, mês, trimestre, dia da semana.
+| Tabela                | Descrição                                  |
+| --------------------- | ------------------------------------------ |
+| `gold_dim_time`       | Ano, mês, dia, trimestre, dia da semana    |
+| `gold_dim_location`   | UF, município, BR, KM, tipo de pista, etc. |
+| `gold_dim_conditions` | Clima, fase do dia, traçado da via         |
+| `gold_dim_victim`     | Atributos da vítima (se aplicável)         |
 
-gold_dim_location
-Informações sobre UF, município, BR, KM, tipo de pista, etc.
 
-gold_dim_conditions
-Condições do acidente como clima, fase do dia, traçado da via.
 
-📕 Fato
+### 📕 Fato
 
-gold_fact_victim
-Cada registro representa uma vítima envolvida em um acidente.
+gold_fact_table -	Cada registro representa uma vítima envolvida em um acidente
 
-🔎 Desafio importante:
-A criação de IDs consistentes por vítima exigiu o uso de informações como pesid, id_acidente e id_veiculo, resultando em uma estrutura relacional mais confiável.
+🔎 Desafio:
+Criar identificadores únicos para cada vítima exigiu combinar atributos como pesid, id_acidente e id_veiculo, garantindo granularidade confiável.
 
 📌 Objetivo do Projeto
 
@@ -118,9 +118,16 @@ Ferramentas previstas:
 
 Power BI
 
-Looker Studio
+Databricks 
 
-Databricks SQL Visualization
+🗂️ Dataset Disponível no Kaggle
+
+📥 Download do dataset completo (Silver + Gold):
+
+👉 Adicione aqui o link para o Kaggle
+
+(Exemplo: https://www.kaggle.com/seu-usuario/datatran-brasil-gold)
+
 
 🏷️ Requisitos para Execução
 
@@ -154,7 +161,7 @@ Sugestões de modelagem, limpeza ou novas análises podem ser enviadas via pull 
 📬 Contato
 
 Se quiser conversar sobre dados, arquitetura, engenharia ou análises, me encontre no LinkedIn:
-👉 [Seu Nome Aqui]
+👉 Igor Maciel Tiburcio
 
 
 
