@@ -143,9 +143,8 @@ Python 3.10+
 
 Clone o repositório:
 
-git clone https://github.com/seu-user/projeto-datatran.git
+git clone https://github.com/igorTiburcio81/projeto-datatran.git
 cd projeto-datatran
-
 
 Execute os notebooks na ordem:
 
