@@ -65,7 +65,7 @@ O projeto inclui views especializadas que facilitam análises específicas e rec
 
 ## Stack Tecnológica
 
-**Plataforma:** Databricks Community Edition  
+**Plataforma:** Databricks Free Edition  
 **Processamento:** PySpark e Spark SQL  
 **Armazenamento:** Delta Lake  
 **Visualização:** Metabase (containerizado via Docker)  
