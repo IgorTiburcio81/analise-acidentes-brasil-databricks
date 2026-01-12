@@ -109,7 +109,7 @@ O dataset processado nas camadas Silver e Gold está disponível para download n
 
 ## Próximos Passos
 
-O desenvolvimento futuro do projeto contempla a implementação de uma fase de análise exploratória detalhada, incluindo estudo estatístico aprofundado, visualizações especializadas, detecção de outliers e identificação de padrões complexos nos dados. Posteriormente será desenvolvido um dashboard analítico completo utilizando ferramentas como Power BI ou recursos nativos do Databricks, consolidando as principais métricas e insights em uma interface interativa e acessível.
+O desenvolvimento futuro do projeto contempla a implementação de uma fase de análise exploratória detalhada, incluindo estudo estatístico aprofundado, visualizações especializadas, detecção de outliers e identificação de padrões complexos nos dados. Posteriormente será desenvolvido um dashboard analítico completo utilizando Metabase, consolidando as principais métricas e insights em uma interface interativa e acessível.
 
 ## Contribuições
 
